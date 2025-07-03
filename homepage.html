@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immigration Now - Canadian Immigration Consultant Review Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #337ab7;
+            --secondary: #f9f9f9;
+            --text: #333333;
+            --text-secondary: #555555;
+            --background: #ffffff;
+            --border: #dddddd;
+            --verified-blue: #007bff;
+        }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            color: var(--text);
+            background-color: var(--background);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background-color: #2868a0;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .btn-outline:hover {
+            background-color: #f0f7ff;
+        }
+
+        .filter-chip {
+            background-color: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            color: #374151;
+            border-radius: 9999px;
+            padding: 0.25rem 1rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-chip:hover {
+            background-color: #e5e7eb;
+        }
+
+        .filter-chip .remove {
+            color: #6b7280;
+            font-size: 1.25rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .filter-chip .remove:hover {
+            color: #374151;
+        }
+
+        .consultant-card {
+            display: flex;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .multi-select {
+            position: relative;
+        }
+
+        .multi-select-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0.375rem;
+            margin-top: 0.25rem;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 10;
+            display: none;
+        }
+
+        .multi-select.active .multi-select-dropdown {
+            display: block;
+        }
+
+        .multi-select-option {
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+
+        .multi-select-option:hover {
+            background-color: var(--secondary);
+        }
+
+        .multi-select-option.selected {
+            background-color: #e8f0fe;
+            color: var(--primary);
+        }
+
+        .selected-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="flex justify-between items-center p-4 border-b border-gray-200">
+        <div class="text-2xl font-bold text-primary">
+            <a href="/" class="text-[#337ab7]">Immigration Now</a>
+        </div>
+        <div class="w-1/3">
+            <input type="text" placeholder="Search by city, postcode or name" class="w-full px-4 py-2 border rounded-md">
+        </div>
+        <nav class="flex gap-4 items-center">
+            <button class="btn-outline">Log In</button>
+            <button class="btn-primary">Sign Up and Get Listed</button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex gap-8">
+            <!-- Filters Sidebar -->
+            <aside class="w-1/4">
+                <div class="border rounded-lg p-4 bg-white">
+                    <h2 class="text-xl font-bold mb-4">Filters</h2>
+                    
+                    <!-- Location Filter -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                        <div class="multi-select" id="locationSelect">
+                            <div class="block w-full px-3 py-2 border border-gray-300 rounded-md cursor-pointer">
+                                Select Locations
+                            </div>
+                            <div class="selected-options" id="selectedLocations"></div>
+                            <div class="multi-select-dropdown">
+                                <div class="multi-select-option" data-value="toronto">Toronto, ON</div>
+                                <div class="multi-select-option" data-value="vancouver">Vancouver, BC</div>
+                                <div class="multi-select-option" data-value="montreal">Montreal, QC</div>
+                                <div class="multi-select-option" data-value="calgary">Calgary, AB</div>
+                                <div class="multi-select-option" data-value="ottawa">Ottawa, ON</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Availability Filter -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Availability</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Remote
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> In-person
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Specialization Filter -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Specialization</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Express Entry
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Study Permit
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Work Visa
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> PNP
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Rating Filter -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Minimum Rating</label>
+                        <select class="block w-full px-3 py-2 border border-gray-300 rounded-md">
+                            <option>Any Rating</option>
+                            <option>4+ Stars</option>
+                            <option>3+ Stars</option>
+                            <option>2+ Stars</option>
+                        </select>
+                    </div>
+
+                    <!-- Years of Experience Filter -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Years of Experience</label>
+                        <select class="block w-full px-3 py-2 border border-gray-300 rounded-md">
+                            <option>Any Experience</option>
+                            <option>5+ Years</option>
+                            <option>10+ Years</option>
+                            <option>15+ Years</option>
+                            <option>20+ Years</option>
+                        </select>
+                    </div>
+
+                    <!-- Price Range Filter -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
+                        <select class="block w-full px-3 py-2 border border-gray-300 rounded-md">
+                            <option>Any Price</option>
+                            <option>$0 - $1,000</option>
+                            <option>$1,000 - $2,000</option>
+                            <option>$2,000 - $3,000</option>
+                            <option>$3,000+</option>
+                        </select>
+                    </div>
+
+                    <!-- Languages Filter -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Languages Spoken</label>
+                        <div class="multi-select" id="languageSelect">
+                            <div class="block w-full px-3 py-2 border border-gray-300 rounded-md cursor-pointer">
+                                Select Languages
+                            </div>
+                            <div class="selected-options" id="selectedLanguages"></div>
+                            <div class="multi-select-dropdown">
+                                <div class="multi-select-option" data-value="english">English</div>
+                                <div class="multi-select-option" data-value="french">French</div>
+                                <div class="multi-select-option" data-value="mandarin">Mandarin</div>
+                                <div class="multi-select-option" data-value="hindi">Hindi</div>
+                                <div class="multi-select-option" data-value="spanish">Spanish</div>
+                                <div class="multi-select-option" data-value="punjabi">Punjabi</div>
+                                <div class="multi-select-option" data-value="arabic">Arabic</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Results -->
+            <div class="flex-1">
+                <h1 class="text-2xl font-bold mb-4">Immigration Consultants in Toronto</h1>
+                
+                <!-- Active Filters -->
+                <div class="flex gap-2 mb-4 flex-wrap">
+                    <span class="filter-chip">Toronto</span>
+                    <span class="filter-chip">Remote</span>
+                    <span class="filter-chip">Express Entry</span>
+                    <span class="filter-chip">4+ Stars</span>
+                </div>
+
+                <!-- Consultant Cards -->
+                <div class="space-y-4">
+                    <!-- Consultant Card 1 -->
+                    <div class="consultant-card">
+                        <img src="https://via.placeholder.com/96" alt="Consultant" class="w-24 h-24 rounded-full object-cover">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <h2 class="text-xl font-bold text-primary">John Smith</h2>
+                                <svg class="w-5 h-5 text-[#007bff]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                                </svg>
+                            </div>
+                            <p class="text-text-secondary">RCIC License #R123456</p>
+                            <p class="text-text-secondary text-sm">Toronto, ON • Remote Available</p>
+                            <p class="mt-2">Specializing in Express Entry and Provincial Nominee Programs with over 10 years of experience.</p>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="text-sm text-gray-600">Languages: English, French</span>
+                                <span class="text-sm text-gray-600">•</span>
+                                <span class="text-sm text-gray-600">Experience: 10 years</span>
+                                <span class="text-sm text-gray-600">•</span>
+                                <span class="text-sm text-gray-600">Fee: $1,500 - $2,500</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 w-48">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-primary">4.8/5</div>
+                                <div class="text-sm text-text-secondary">125 reviews</div>
+                            </div>
+                            <button class="btn-primary">Contact</button>
+                            <button class="btn-outline">View Profile</button>
+                        </div>
+                    </div>
+
+                    <!-- Consultant Card 2 -->
+                    <div class="consultant-card">
+                        <img src="https://via.placeholder.com/96" alt="Consultant" class="w-24 h-24 rounded-full object-cover">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <h2 class="text-xl font-bold text-primary">Sarah Johnson</h2>
+                                <svg class="w-5 h-5 text-[#007bff]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                                </svg>
+                            </div>
+                            <p class="text-text-secondary">Immigration Lawyer • LSO #L567890</p>
+                            <p class="text-text-secondary text-sm">Toronto, ON • In-person Only</p>
+                            <p class="mt-2">Expert in Study Permits and Work Visas. Fluent in English, French, and Mandarin.</p>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="text-sm text-gray-600">Languages: English, French, Mandarin</span>
+                                <span class="text-sm text-gray-600">•</span>
+                                <span class="text-sm text-gray-600">Experience: 15 years</span>
+                                <span class="text-sm text-gray-600">•</span>
+                                <span class="text-sm text-gray-600">Fee: $2,000 - $3,000</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 w-48">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-primary">4.6/5</div>
+                                <div class="text-sm text-text-secondary">89 reviews</div>
+                            </div>
+                            <button class="btn-primary">Contact</button>
+                            <button class="btn-outline">View Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 mt-8 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-bold mb-4">About Immigration Now</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-primary">About Us</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary">How It Works</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary">For Consultants</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-primary">Blog</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary">FAQ</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-primary">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Connect</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-primary">Twitter</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary">LinkedIn</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-200 text-center text-gray-600">
+                © 2024 Immigration Now. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize multi-select dropdowns
+        function initMultiSelect(elementId) {
+            const container = document.getElementById(elementId);
+            const trigger = container.querySelector('.block');
+            const dropdown = container.querySelector('.multi-select-dropdown');
+            const options = container.querySelectorAll('.multi-select-option');
+            const selectedContainer = container.querySelector('.selected-options');
+            
+            // Toggle dropdown
+            trigger.addEventListener('click', () => {
+                container.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!container.contains(e.target)) {
+                    container.classList.remove('active');
+                }
+            });
+
+            // Handle option selection
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    option.classList.toggle('selected');
+                    updateSelectedOptions(container);
+                });
+            });
+
+            // Update selected options display
+            function updateSelectedOptions(container) {
+                const selectedOptions = container.querySelectorAll('.multi-select-option.selected');
+                const selectedContainer = container.querySelector('.selected-options');
+                selectedContainer.innerHTML = '';
+
+                selectedOptions.forEach(option => {
+                    const chip = document.createElement('span');
+                    chip.className = 'filter-chip';
+                    chip.innerHTML = `
+                        ${option.textContent}
+                        <span class="remove" data-value="${option.dataset.value}">&times;</span>
+                    `;
+                    selectedContainer.appendChild(chip);
+
+                    // Handle remove button click
+                    chip.querySelector('.remove').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        option.classList.remove('selected');
+                        updateSelectedOptions(container);
+                    });
+                });
+            }
+        }
+
+        // Initialize both multi-select dropdowns
+        initMultiSelect('locationSelect');
+        initMultiSelect('languageSelect');
+    </script>
+</body>
+</html> 
