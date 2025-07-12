@@ -132,10 +132,9 @@ This is a core component for populating the platform.
 
 ### **6.1. Tech Stack**
 
-  - **Frontend:** **Next.js**, **TypeScript**, **shadcn/ui**
-  - **Backend:** **Next.js API Routes**
-  - **Database:** **PostgreSQL** (managed via **Supabase**)
-  - **Deployment:** **Vercel**
+- **Frontend:** Next.js, TypeScript, Shadcdn, react-hook-form (form)
+- **Backend:** PostgreSQL (Supabase MCP), Drizzle (ORM), Next.js API Routes, Supbase Auth
+- **Deployment:** Vercel
 
 ### **6.2. Database Schema (ER Diagram)**
 
