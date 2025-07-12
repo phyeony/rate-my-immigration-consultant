@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Consultant - Immigration Now</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #337ab7;
+            --secondary: #f9f9f9;
+            --text: #333333;
+            --text-secondary: #555555;
+            --background: #ffffff;
+            --border: #dddddd;
+            --verified-blue: #007bff;
+        }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            color: var(--text);
+            background-color: var(--background);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background-color: #2868a0;
+        }
+
+        .form-section {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .email-preview {
+            background: #f8f9fa;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="flex justify-between items-center p-4 border-b border-gray-200 bg-white">
+        <div class="text-2xl font-bold text-primary">
+            <a href="/" class="text-[#337ab7]">Immigration Now</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-3xl">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-2">Contact John Smith</h1>
+            <p class="text-gray-600">RCIC License #R123456</p>
+        </div>
+
+        <!-- Step 1: Information Selection -->
+        <div class="form-section">
+            <h2 class="text-xl font-bold mb-4">Share Your Information</h2>
+            <p class="text-gray-600 mb-4">Select the information you'd like to share with the consultant:</p>
+
+            <!-- Personal Information -->
+            <div class="space-y-4">
+                <div>
+                    <label class="flex items-center">
+                        <input type="checkbox" class="mr-2" id="shareBasicInfo">
+                        <span class="font-medium">Basic Information</span>
+                    </label>
+                    <div class="ml-6 mt-2 text-gray-600">
+                        <p>Name: John Doe</p>
+                        <p>Email: john.doe@example.com</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="flex items-center">
+                        <input type="checkbox" class="mr-2" id="shareAge">
+                        <span class="font-medium">Age & Location</span>
+                    </label>
+                    <div class="ml-6 mt-2 text-gray-600">
+                        <p>Age: 28</p>
+                        <p>Current Location: Vancouver, BC</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="flex items-center">
+                        <input type="checkbox" class="mr-2" id="shareLanguages">
+                        <span class="font-medium">Language Proficiency</span>
+                    </label>
+                    <div class="ml-6 mt-2 text-gray-600">
+                        <p>English (Fluent)</p>
+                        <p>French (Intermediate)</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="flex items-center">
+                        <input type="checkbox" class="mr-2" id="shareEducation">
+                        <span class="font-medium">Education & Work</span>
+                    </label>
+                    <div class="ml-6 mt-2 text-gray-600">
+                        <p>Education: Bachelor's in Computer Science</p>
+                        <p>Work Experience: 5 years</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="flex items-center">
+                        <input type="checkbox" class="mr-2" id="sharePreferences">
+                        <span class="font-medium">Immigration Preferences</span>
+                    </label>
+                    <div class="ml-6 mt-2 text-gray-600">
+                        <p>Interested in: Express Entry, PNP</p>
+                        <p>Preferred Province: British Columbia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Additional Message -->
+        <div class="form-section">
+            <h2 class="text-xl font-bold mb-4">Additional Message</h2>
+            <textarea 
+                class="w-full p-3 border rounded-md h-32"
+                placeholder="Add any specific questions or information you'd like to share..."
+            ></textarea>
+        </div>
+
+        <!-- Step 3: Email Preview -->
+        <div class="form-section">
+            <h2 class="text-xl font-bold mb-4">Email Preview</h2>
+            <div class="email-preview">
+                <p>Subject: Immigration Consultation Request</p>
+                <br>
+                <p>Dear John Smith,</p>
+                <br>
+                <p>I am writing to request a consultation regarding immigration services. Below is my information:</p>
+                <br>
+                <div id="emailContent">
+                    <!-- Dynamic content will be inserted here based on selections -->
+                    <p>Name: John Doe</p>
+                    <p>Email: john.doe@example.com</p>
+                    <br>
+                    <p>I am interested in discussing immigration options and would appreciate your guidance.</p>
+                </div>
+                <br>
+                <p>Best regards,</p>
+                <p>John Doe</p>
+            </div>
+
+            <div class="mt-4 text-sm text-gray-600">
+                <p>Note: Your email address will be shared with the consultant to facilitate communication.</p>
+            </div>
+        </div>
+
+        <!-- Send Button -->
+        <div class="flex justify-end mt-6">
+            <button class="btn-primary px-8 py-3">Send Email</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 mt-8 py-8">
+        <div class="container mx-auto px-4 text-center text-gray-600">
+            © 2024 Immigration Now. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Function to update email preview based on selected information
+        function updateEmailPreview() {
+            const emailContent = document.getElementById('emailContent');
+            let content = '';
+
+            // Basic Information
+            if (document.getElementById('shareBasicInfo').checked) {
+                content += `
+                    <p>Name: John Doe</p>
+                    <p>Email: john.doe@example.com</p>
+                    <br>
+                `;
+            }
+
+            // Age & Location
+            if (document.getElementById('shareAge').checked) {
+                content += `
+                    <p>Age: 28</p>
+                    <p>Current Location: Vancouver, BC</p>
+                    <br>
+                `;
+            }
+
+            // Languages
+            if (document.getElementById('shareLanguages').checked) {
+                content += `
+                    <p>Language Proficiency:</p>
+                    <p>- English (Fluent)</p>
+                    <p>- French (Intermediate)</p>
+                    <br>
+                `;
+            }
+
+            // Education & Work
+            if (document.getElementById('shareEducation').checked) {
+                content += `
+                    <p>Education: Bachelor's in Computer Science</p>
+                    <p>Work Experience: 5 years</p>
+                    <br>
+                `;
+            }
+
+            // Immigration Preferences
+            if (document.getElementById('sharePreferences').checked) {
+                content += `
+                    <p>Immigration Preferences:</p>
+                    <p>- Interested in: Express Entry, PNP</p>
+                    <p>- Preferred Province: British Columbia</p>
+                    <br>
+                `;
+            }
+
+            content += `<p>I am interested in discussing immigration options and would appreciate your guidance.</p>`;
+            emailContent.innerHTML = content;
+        }
+
+        // Add event listeners to all checkboxes
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', updateEmailPreview);
+        });
+
+        // Update preview when additional message changes
+        document.querySelector('textarea').addEventListener('input', function() {
+            const additionalMessage = this.value.trim();
+            if (additionalMessage) {
+                const emailContent = document.getElementById('emailContent');
+                emailContent.innerHTML = emailContent.innerHTML.replace(
+                    /I am interested.*$/,
+                    `${additionalMessage}\n\nI look forward to your response.`
+                );
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as a Consultant - Immigration Now</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #337ab7;
+            --secondary: #f9f9f9;
+            --text: #333333;
+            --text-secondary: #555555;
+            --background: #ffffff;
+            --border: #dddddd;
+            --verified-blue: #007bff;
+        }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            color: var(--text);
+            background-color: var(--background);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background-color: #2868a0;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 0.375rem;
+            margin-top: 0.25rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(51, 122, 183, 0.1);
+        }
+
+        .form-section {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="flex justify-between items-center p-4 border-b border-gray-200 bg-white">
+        <div class="text-2xl font-bold text-primary">
+            <a href="/" class="text-[#337ab7]">Immigration Now</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-3xl">
+        <h1 class="text-3xl font-bold mb-8 text-center">Register as an Immigration Consultant</h1>
+        
+        <form class="space-y-6">
+            <!-- Personal Information -->
+            <div class="form-section">
+                <h2 class="text-xl font-bold mb-4">Personal Information</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-medium">First Name</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div>
+                        <label class="block font-medium">Last Name</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <label class="block font-medium">Profile Picture</label>
+                    <input type="file" accept="image/*" class="mt-1">
+                </div>
+            </div>
+
+            <!-- Professional Information -->
+            <div class="form-section">
+                <h2 class="text-xl font-bold mb-4">Professional Information</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block font-medium">License Type</label>
+                        <select class="form-input" required>
+                            <option>RCIC (Regulated Canadian Immigration Consultant)</option>
+                            <option>Immigration Lawyer</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-medium">License Number</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div>
+                        <label class="block font-medium">Years of Experience</label>
+                        <input type="number" class="form-input" min="0" required>
+                    </div>
+                    <div>
+                        <label class="block font-medium">Company Name (if applicable)</label>
+                        <input type="text" class="form-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services & Expertise -->
+            <div class="form-section">
+                <h2 class="text-xl font-bold mb-4">Services & Expertise</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block font-medium mb-2">Specializations</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Express Entry
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Study Permit
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Work Permit
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> PNP
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Family Sponsorship
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Business Immigration
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-medium mb-2">Languages Spoken</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> English
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> French
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Mandarin
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Hindi
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Spanish
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Other
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Details -->
+            <div class="form-section">
+                <h2 class="text-xl font-bold mb-4">Service Details</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block font-medium">Initial Consultation Fee</label>
+                        <div class="flex items-center">
+                            <span class="mr-2">$</span>
+                            <input type="number" class="form-input" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-medium">Service Fee Range</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center">
+                                <span class="mr-2">$</span>
+                                <input type="number" placeholder="Min" class="form-input" required>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="mr-2">$</span>
+                                <input type="number" placeholder="Max" class="form-input" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-medium">Availability</label>
+                        <div class="space-y-2 mt-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Available for Remote Consultations
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2"> Available for In-person Consultations
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About & Bio -->
+            <div class="form-section">
+                <h2 class="text-xl font-bold mb-4">About You</h2>
+                <div>
+                    <label class="block font-medium">Professional Biography</label>
+                    <textarea 
+                        class="form-input h-32"
+                        placeholder="Tell potential clients about your experience, approach, and what makes you unique..."
+                        required
+                    ></textarea>
+                </div>
+            </div>
+
+            <!-- Terms and Conditions -->
+            <div class="form-section">
+                <div class="space-y-4">
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-1 mr-2" required>
+                        <span class="text-sm">
+                            I confirm that all information provided is accurate and I agree to Immigration Now's 
+                            <a href="#" class="text-primary hover:underline">Terms of Service</a> and 
+                            <a href="#" class="text-primary hover:underline">Privacy Policy</a>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-center">
+                <button type="submit" class="btn-primary px-8 py-3">Submit Registration</button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 mt-8 py-8">
+        <div class="container mx-auto px-4 text-center text-gray-600">
+            © 2024 Immigration Now. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html> 

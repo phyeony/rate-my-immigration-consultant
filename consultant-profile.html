@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Smith - Immigration Consultant Profile | Immigration Now</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #337ab7;
+            --secondary: #f9f9f9;
+            --text: #333333;
+            --text-secondary: #555555;
+            --background: #ffffff;
+            --border: #dddddd;
+            --verified-blue: #007bff;
+        }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            color: var(--text);
+            background-color: var(--background);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background-color: #2868a0;
+        }
+
+        .star-rating {
+            color: #fbbf24;
+        }
+
+        .review-card {
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="flex justify-between items-center p-4 border-b border-gray-200">
+        <div class="text-2xl font-bold text-primary">
+            <a href="/" class="text-[#337ab7]">Immigration Now</a>
+        </div>
+        <nav class="flex gap-4 items-center">
+            <button class="btn-primary">Sign Up and Get Listed</button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-5xl">
+        <!-- Consultant Header -->
+        <div class="flex gap-8 mb-8">
+            <img src="https://via.placeholder.com/200" alt="John Smith" class="w-48 h-48 rounded-lg object-cover">
+            <div class="flex-1">
+                <div class="flex items-center gap-2 mb-2">
+                    <h1 class="text-3xl font-bold">John Smith</h1>
+                    <svg class="w-6 h-6 text-[#007bff]" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                    </svg>
+                </div>
+                <p class="text-lg text-gray-600 mb-4">RCIC License #R123456</p>
+                <div class="flex gap-4 text-lg mb-4">
+                    <div class="star-rating">★★★★★</div>
+                    <span class="font-bold">4.8/5</span>
+                    <span class="text-gray-600">(125 reviews)</span>
+                </div>
+                <div class="flex gap-4 mb-4">
+                    <button class="btn-primary">Request Consultation</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="grid grid-cols-3 gap-8">
+            <!-- Left Column -->
+            <div class="col-span-2">
+                <!-- About Section -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">About</h2>
+                    <p class="text-gray-700 mb-4">
+                        With over 10 years of experience in Canadian immigration consulting, I specialize in Express Entry and Provincial Nominee Programs. My approach is client-focused, ensuring clear communication and thorough preparation throughout the immigration process.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <h3 class="font-bold mb-2">Specializations</h3>
+                            <ul class="list-disc list-inside text-gray-700">
+                                <li>Express Entry</li>
+                                <li>Provincial Nominee Program</li>
+                                <li>Study Permits</li>
+                                <li>Work Permits</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2">Languages</h3>
+                            <ul class="list-disc list-inside text-gray-700">
+                                <li>English (Native)</li>
+                                <li>French (Fluent)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reviews Section -->
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">Reviews</h2>
+                    
+                    <!-- Review Card -->
+                    <div class="review-card">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold">Michael Chen</h3>
+                                <p class="text-gray-600">Express Entry Application • 2 months ago</p>
+                            </div>
+                            <div class="star-rating">★★★★★</div>
+                        </div>
+                        <p class="text-gray-700">
+                            John was incredibly helpful throughout my Express Entry application process. His knowledge and attention to detail made the entire process smooth and successful. Highly recommended!
+                        </p>
+                    </div>
+
+                    <!-- Review Card -->
+                    <div class="review-card">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold">Anonymous</h3>
+                                <p class="text-gray-600">Study Permit • 3 months ago</p>
+                            </div>
+                            <div class="star-rating">★★★★★</div>
+                        </div>
+                        <p class="text-gray-700">
+                            Professional service from start to finish. John helped me understand all the requirements and prepared my application perfectly. I got my study permit without any issues.
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column -->
+            <div>
+                <!-- Contact Info Card -->
+                <div class="border rounded-lg p-6 bg-white sticky top-4">
+                    <h2 class="text-xl font-bold mb-4">Contact Information</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-bold mb-1">Location</h3>
+                            <p class="text-gray-700">Toronto, ON</p>
+                            <p class="text-gray-700">Available for remote consultations</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-1">Consultation Fee</h3>
+                            <p class="text-gray-700">$150 - Initial Consultation</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-1">Service Fees</h3>
+                            <p class="text-gray-700">$1,500 - $2,500</p>
+                            <p class="text-sm text-gray-600">Varies by application type</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-1">Experience</h3>
+                            <p class="text-gray-700">10+ years</p>
+                        </div>
+                        <button class="btn-primary w-full mt-4">Request Consultation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 mt-8 py-8">
+        <div class="container mx-auto px-4 text-center text-gray-600">
+            © 2024 Immigration Now. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html> 
