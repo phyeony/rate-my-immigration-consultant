@@ -5,22 +5,63 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import CityProvinceFilter from "@/components/CityProvinceFilter";
+import { City } from "@/types/City";
 
-const LOCATIONS = [
-  "Toronto, ON",
-  "Vancouver, BC",
-  "Montreal, QC",
-  "Calgary, AB",
-  "Ottawa, ON",
-];
-const LANGUAGES = [
-  "English",
-  "French",
-  "Mandarin",
-  "Hindi",
-  "Spanish",
-  "Punjabi",
-  "Arabic",
+const LANGUAGES = 
+[
+  'Akan',
+  'Swahili',
+  'Rundi',
+  'Somali',
+  'Oromo',
+  'Arabic',
+  'Hebrew',
+  'Amharic',
+  'Turkish',
+  'Azerbaijani',
+  'Armenian',
+  'Punjabi',
+  'Urdu',
+  'Persian',
+  'Gujarati',
+  'Hindi',
+  'Tamil',
+  'Malayalam',
+  'Telugu',
+  'Cantonese',
+  'Mandarin',
+  'Tibetan',
+  'Burmese',
+  'Korean',
+  'Japanese',
+  'Tagalog',
+  'Ilocano',
+  'Malay',
+  'Lao',
+  'Thai',
+  'Vietnamese',
+  'Khmer',
+  'Spanish',
+  'Italian',
+  'Portuguese',
+  'German',
+  'Dutch',
+  'Yiddish',
+  'Polish',
+  'Russian',
+  'Ukrainian',
+  'Lithuanian',
+  'Latvian',
+  'Hungarian',
+  'Finnish',
+  'Estonian',
+  'Welsh',
+  'Greek',
+  'Albanian',
+  'Haitian Creole',
+  'Kabyle',
+  'Georgian',
+  'Mongol'
 ];
 const SPECIALIZATIONS = [
   "Express Entry",
@@ -29,10 +70,9 @@ const SPECIALIZATIONS = [
   "PNP",
 ];
 
-export default function ClientPage({cities}) {
-  console.log("CITIES", cities)
+export default function ClientPage({cities} : {cities: City[]}) {
   // Multi-select state for location and language
-  const [selectedLocations, setSelectedLocations] = useState<string[]>(["Toronto, ON"]);
+  const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
 
   const toggleChip = (value: string, selected: string[], setSelected: (v: string[]) => void) => {
@@ -70,9 +110,7 @@ export default function ClientPage({cities}) {
                 {/* Location Multi-select */}
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
-            
-                    <CityProvinceFilter value={selectedLocations} onChange={setSelectedLocations} cities={cities} />
-                
+                  <CityProvinceFilter value={selectedLocations} onChange={setSelectedLocations} cities={cities} />
                 </div>
                 {/* Availability */}
                 <div className="mb-4">

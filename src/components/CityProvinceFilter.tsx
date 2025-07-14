@@ -19,77 +19,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Badge } from "@/components/ui/badge"
+import { City } from "@/types/City"
 
-
-// --- DATA ---
-// A more comprehensive list of Canadian cities to better test performance.
-const CITIES_IN_CANADA = [
-  // Alberta
-  { value: "calgary-ab", label: "Calgary", province: "Alberta" },
-  { value: "edmonton-ab", label: "Edmonton", province: "Alberta" },
-  { value: "red-deer-ab", label: "Red Deer", province: "Alberta" },
-  { value: "lethbridge-ab", label: "Lethbridge", province: "Alberta" },
-  { value: "st-albert-ab", label: "St. Albert", province: "Alberta" },
-  { value: "medicine-hat-ab", label: "Medicine Hat", province: "Alberta" },
-  { value: "grande-prairie-ab", label: "Grande Prairie", province: "Alberta" },
-  
-  // British Columbia
-  { value: "vancouver-bc", label: "Vancouver", province: "British Columbia" },
-  { value: "surrey-bc", label: "Surrey", province: "British Columbia" },
-  { value: "burnaby-bc", label: "Burnaby", province: "British Columbia" },
-  { value: "richmond-bc", label: "Richmond", province: "British Columbia" },
-  { value: "kelowna-bc", label: "Kelowna", province: "British Columbia" },
-  { value: "kamloops-bc", label: "Kamloops", province: "British Columbia" },
-  { value: "victoria-bc", label: "Victoria", province: "British Columbia" },
-  
-  // Manitoba
-  { value: "winnipeg-mb", label: "Winnipeg", province: "Manitoba" },
-  { value: "brandon-mb", label: "Brandon", province: "Manitoba" },
-  
-  // New Brunswick
-  { value: "moncton-nb", label: "Moncton", province: "New Brunswick" },
-  { value: "saint-john-nb", label: "Saint John", province: "New Brunswick" },
-  { value: "fredericton-nb", label: "Fredericton", province: "New Brunswick" },
-  
-  // Newfoundland and Labrador
-  { value: "st-johns-nl", label: "St. John's", province: "Newfoundland and Labrador" },
-  
-  // Nova Scotia
-  { value: "halifax-ns", label: "Halifax", province: "Nova Scotia" },
-  { value: "sydney-ns", label: "Sydney", province: "Nova Scotia" },
-
-  // Ontario
-  { value: "toronto-on", label: "Toronto", province: "Ontario" },
-  { value: "ottawa-on", label: "Ottawa", province: "Ontario" },
-  { value: "mississauga-on", label: "Mississauga", province: "Ontario" },
-  { value: "brampton-on", label: "Brampton", province: "Ontario" },
-  { value: "hamilton-on", label: "Hamilton", province: "Ontario" },
-  { value: "london-on", label: "London", province: "Ontario" },
-  { value: "markham-on", label: "Markham", province: "Ontario" },
-  { value: "vaughan-on", label: "Vaughan", province: "Ontario" },
-  { value: "kitchener-on", label: "Kitchener", province: "Ontario" },
-  { value: "windsor-on", label: "Windsor", province: "Ontario" },
-
-  // Prince Edward Island
-  { value: "charlottetown-pe", label: "Charlottetown", province: "Prince Edward Island" },
-
-  // Quebec
-  { value: "montreal-qc", label: "Montreal", province: "Quebec" },
-  { value: "quebec-city-qc", label: "Quebec City", province: "Quebec" },
-  { value: "laval-qc", label: "Laval", province: "Quebec" },
-  { value: "gatineau-qc", label: "Gatineau", province: "Quebec" },
-  { value: "longueuil-qc", label: "Longueuil", province: "Quebec" },
-  { value: "sherbrooke-qc", label: "Sherbrooke", province: "Quebec" },
-
-  // Saskatchewan
-  { value: "saskatoon-sk", label: "Saskatoon", province: "Saskatchewan" },
-  { value: "regina-sk", label: "Regina", province: "Saskatchewan" },
-  
-  // Territories
-  { value: "whitehorse-yt", label: "Whitehorse", province: "Yukon" },
-  { value: "yellowknife-nt", label: "Yellowknife", province: "Northwest Territories" },
-  { value: "iqaluit-nu", label: "Iqaluit", province: "Nunavut" },
-];
 
 /**
  * @typedef CityProvinceFilterProps
@@ -98,14 +29,9 @@ const CITIES_IN_CANADA = [
  */
 
 // --- TypeScript Types ---
-interface City {
-  value: string;
-  label: string;
-  province: string;
-}
 
 export interface CityProvinceFilterProps {
-  cities: { city: string; province_id: string; province_name: string }[];
+  cities: City[];
   value?: string[];
   onChange?: (value: string[]) => void;
 }
@@ -185,8 +111,8 @@ export default function CityProvinceFilter({ cities, value: controlledValue, onC
     }
   };
 
-  const selectedCities = cities.filter((city: City) => selectedValues.has(city.value));
-
+const selectedCities = cities.filter((city: City) => selectedValues.has(`${city.value}, ${city.provinceId}`) );
+ console.log("SE", selectedCities)
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -201,14 +127,14 @@ export default function CityProvinceFilter({ cities, value: controlledValue, onC
               selectedCities.map((city: City) => (
                 <Badge
                   variant="secondary"
-                  key={city.value}
-                  className="mr-1 text-xs truncate max-w-18"
+                  key={`${city.value}, ${city.provinceId}`}
+                  className="mr-1 text-xs truncate max-w-16 md:max-w-26 lg:max-w-full"
                   onClick={(e) => {
                     e.stopPropagation(); // prevent popover from opening
-                    handleUnselect(city.value);
+                    handleUnselect(`${city.value}, ${city.provinceId}`);
                   }}
                 >
-                  <span className="truncate">{city.label}</span>
+                  <span className="truncate">{`${city.value}, ${city.provinceId}`}</span>
                   <X className="ml-1 h-3 w-3" />
                 </Badge>
               ))
@@ -242,12 +168,12 @@ export default function CityProvinceFilter({ cities, value: controlledValue, onC
                   <CommandItem
                     key={city.value}
                     // We don't need the 'value' prop for filtering anymore, as we do it manually
-                    onSelect={() => handleSelect(city.value)}
+                    onSelect={() => handleSelect(`${city.value}, ${city.provinceId}`)}
                   >
                     <Check
                       className={cn(
                         "mr-2 h-4 w-4",
-                        selectedValues.has(city.value) ? "opacity-100" : "opacity-0"
+                        selectedValues.has(`${city.value}, ${city.provinceId}`) ? "opacity-100" : "opacity-0"
                       )}
                     />
                     {city.label}
