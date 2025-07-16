@@ -6,7 +6,7 @@ import { getLanguages } from "@/lib/getLanguages";
 
 export default function HomePage() {
   const cities:City[] = getCanadaCities(); // runs on the server
- 
+
   return (
     <main>
       <ClientPage

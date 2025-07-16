@@ -6,10 +6,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import CityProvinceFilter from "@/components/CityProvinceFilter";
 import { City } from "@/types/City";
+import LanguageFilter from "@/components/LanguageFilter";
 
 const LANGUAGES = 
 [
   'Akan',
+  'English',
   'Swahili',
   'Rundi',
   'Somali',
@@ -63,6 +65,7 @@ const LANGUAGES =
   'Georgian',
   'Mongol'
 ];
+
 const SPECIALIZATIONS = [
   "Express Entry",
   "Study Permit",
@@ -170,18 +173,7 @@ export default function ClientPage({cities} : {cities: City[]}) {
                 {/* Languages Multi-select */}
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Languages Spoken</label>
-                  <div className="flex flex-wrap gap-2">
-                    {LANGUAGES.map((lang) => (
-                      <button
-                        key={lang}
-                        type="button"
-                        className={`px-3 py-1 rounded-full border text-sm ${selectedLanguages.includes(lang) ? "bg-[#337ab7] text-white border-[#337ab7]" : "bg-white text-gray-700 border-gray-300"}`}
-                        onClick={() => toggleChip(lang, selectedLanguages, setSelectedLanguages)}
-                      >
-                        {lang}
-                      </button>
-                    ))}
-                  </div>
+                  <LanguageFilter languages={LANGUAGES} value={selectedLanguages} onChange={setSelectedLanguages} />
                 </div>
               </CardContent>
             </Card>
@@ -191,15 +183,18 @@ export default function ClientPage({cities} : {cities: City[]}) {
           <div className="flex-1">
             <h1 className="text-2xl font-bold mb-4">Immigration Consultants in Toronto</h1>
             {/* Active Filters */}
-            <div className="flex gap-2 mb-4 flex-wrap">
+            {/* <div className="flex gap-2 mb-4 flex-wrap">
               {selectedLocations.map((loc) => (
                 <span key={loc} className="px-3 py-1 rounded-full bg-[#337ab7] text-white text-sm">{loc}</span>
               ))}
-              {/* Example static chips for demo */}
+              {selectedLanguages.map((lang) => (
+                <span key={lang} className="px-3 py-1 rounded-full bg-[#337ab7] text-white text-sm">{lang}</span>
+              ))}
+  
               <span className="px-3 py-1 rounded-full bg-gray-200 text-gray-700 text-sm">Remote</span>
               <span className="px-3 py-1 rounded-full bg-gray-200 text-gray-700 text-sm">Express Entry</span>
               <span className="px-3 py-1 rounded-full bg-gray-200 text-gray-700 text-sm">4+ Stars</span>
-            </div>
+            </div> */}
             {/* Consultant Cards */}
             <div className="space-y-4">
               {/* Consultant Card 1 */}
@@ -233,6 +228,122 @@ export default function ClientPage({cities} : {cities: City[]}) {
                 </div>
               </Card>
               {/* Consultant Card 2 */}
+              <Card className="flex gap-6 items-center p-6">
+                <img src="https://via.placeholder.com/96" alt="Consultant" className="w-24 h-24 rounded-full object-cover" />
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-bold text-primary">Sarah Johnson</h2>
+                    <svg className="w-5 h-5 text-[#007bff]" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                    </svg>
+                  </div>
+                  <p className="text-text-secondary">Immigration Lawyer  LSO #L567890</p>
+                  <p className="text-text-secondary text-sm">Toronto, ON  In-person Only</p>
+                  <p className="mt-2">Expert in Study Permits and Work Visas. Fluent in English, French, and Mandarin.</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <span className="text-sm text-gray-600">Languages: English, French, Mandarin</span>
+                    <span className="text-sm text-gray-600"></span>
+                    <span className="text-sm text-gray-600">Experience: 15 years</span>
+                    <span className="text-sm text-gray-600"></span>
+                    <span className="text-sm text-gray-600">Fee: $2,000 - $3,000</span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2 w-48">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">4.6/5</div>
+                    <div className="text-sm text-text-secondary">89 reviews</div>
+                  </div>
+                  <Button>Contact</Button>
+                  <Button variant="outline">View Profile</Button>
+                </div>
+              </Card>
+              <Card className="flex gap-6 items-center p-6">
+                <img src="https://via.placeholder.com/96" alt="Consultant" className="w-24 h-24 rounded-full object-cover" />
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-bold text-primary">Sarah Johnson</h2>
+                    <svg className="w-5 h-5 text-[#007bff]" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                    </svg>
+                  </div>
+                  <p className="text-text-secondary">Immigration Lawyer  LSO #L567890</p>
+                  <p className="text-text-secondary text-sm">Toronto, ON  In-person Only</p>
+                  <p className="mt-2">Expert in Study Permits and Work Visas. Fluent in English, French, and Mandarin.</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <span className="text-sm text-gray-600">Languages: English, French, Mandarin</span>
+                    <span className="text-sm text-gray-600"></span>
+                    <span className="text-sm text-gray-600">Experience: 15 years</span>
+                    <span className="text-sm text-gray-600"></span>
+                    <span className="text-sm text-gray-600">Fee: $2,000 - $3,000</span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2 w-48">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">4.6/5</div>
+                    <div className="text-sm text-text-secondary">89 reviews</div>
+                  </div>
+                  <Button>Contact</Button>
+                  <Button variant="outline">View Profile</Button>
+                </div>
+              </Card>
+              <Card className="flex gap-6 items-center p-6">
+                <img src="https://via.placeholder.com/96" alt="Consultant" className="w-24 h-24 rounded-full object-cover" />
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-bold text-primary">Sarah Johnson</h2>
+                    <svg className="w-5 h-5 text-[#007bff]" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                    </svg>
+                  </div>
+                  <p className="text-text-secondary">Immigration Lawyer  LSO #L567890</p>
+                  <p className="text-text-secondary text-sm">Toronto, ON  In-person Only</p>
+                  <p className="mt-2">Expert in Study Permits and Work Visas. Fluent in English, French, and Mandarin.</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <span className="text-sm text-gray-600">Languages: English, French, Mandarin</span>
+                    <span className="text-sm text-gray-600"></span>
+                    <span className="text-sm text-gray-600">Experience: 15 years</span>
+                    <span className="text-sm text-gray-600"></span>
+                    <span className="text-sm text-gray-600">Fee: $2,000 - $3,000</span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2 w-48">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">4.6/5</div>
+                    <div className="text-sm text-text-secondary">89 reviews</div>
+                  </div>
+                  <Button>Contact</Button>
+                  <Button variant="outline">View Profile</Button>
+                </div>
+              </Card>
+              <Card className="flex gap-6 items-center p-6">
+                <img src="https://via.placeholder.com/96" alt="Consultant" className="w-24 h-24 rounded-full object-cover" />
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-bold text-primary">Sarah Johnson</h2>
+                    <svg className="w-5 h-5 text-[#007bff]" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                    </svg>
+                  </div>
+                  <p className="text-text-secondary">Immigration Lawyer  LSO #L567890</p>
+                  <p className="text-text-secondary text-sm">Toronto, ON  In-person Only</p>
+                  <p className="mt-2">Expert in Study Permits and Work Visas. Fluent in English, French, and Mandarin.</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <span className="text-sm text-gray-600">Languages: English, French, Mandarin</span>
+                    <span className="text-sm text-gray-600"></span>
+                    <span className="text-sm text-gray-600">Experience: 15 years</span>
+                    <span className="text-sm text-gray-600"></span>
+                    <span className="text-sm text-gray-600">Fee: $2,000 - $3,000</span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2 w-48">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">4.6/5</div>
+                    <div className="text-sm text-text-secondary">89 reviews</div>
+                  </div>
+                  <Button>Contact</Button>
+                  <Button variant="outline">View Profile</Button>
+                </div>
+              </Card>
               <Card className="flex gap-6 items-center p-6">
                 <img src="https://via.placeholder.com/96" alt="Consultant" className="w-24 h-24 rounded-full object-cover" />
                 <div className="flex-1">
