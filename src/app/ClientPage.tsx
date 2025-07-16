@@ -198,7 +198,7 @@ export default function ClientPage({cities} : {cities: City[]}) {
             {/* Consultant Cards */}
             <div className="space-y-4">
               {/* Consultant Card 1 */}
-              <Card className="flex gap-6 items-center p-6">
+              <Card className="flex flex-row gap-6 items-center p-6">
                 <img src="https://via.placeholder.com/96" alt="Consultant" className="w-24 h-24 rounded-full object-cover" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
@@ -228,7 +228,7 @@ export default function ClientPage({cities} : {cities: City[]}) {
                 </div>
               </Card>
               {/* Consultant Card 2 */}
-              <Card className="flex gap-6 items-center p-6">
+              <Card className="flex flex-row gap-6 items-center p-6">
                 <img src="https://via.placeholder.com/96" alt="Consultant" className="w-24 h-24 rounded-full object-cover" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
@@ -257,7 +257,7 @@ export default function ClientPage({cities} : {cities: City[]}) {
                   <Button variant="outline">View Profile</Button>
                 </div>
               </Card>
-              <Card className="flex gap-6 items-center p-6">
+              <Card className="flex flex-row gap-6 items-center p-6">
                 <img src="https://via.placeholder.com/96" alt="Consultant" className="w-24 h-24 rounded-full object-cover" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
@@ -286,7 +286,7 @@ export default function ClientPage({cities} : {cities: City[]}) {
                   <Button variant="outline">View Profile</Button>
                 </div>
               </Card>
-              <Card className="flex gap-6 items-center p-6">
+              <Card className="flex flex-row gap-6 items-center p-6">
                 <img src="https://via.placeholder.com/96" alt="Consultant" className="w-24 h-24 rounded-full object-cover" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
@@ -315,7 +315,7 @@ export default function ClientPage({cities} : {cities: City[]}) {
                   <Button variant="outline">View Profile</Button>
                 </div>
               </Card>
-              <Card className="flex gap-6 items-center p-6">
+              <Card className="flex flex-row gap-6 items-center p-6">
                 <img src="https://via.placeholder.com/96" alt="Consultant" className="w-24 h-24 rounded-full object-cover" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
@@ -344,7 +344,7 @@ export default function ClientPage({cities} : {cities: City[]}) {
                   <Button variant="outline">View Profile</Button>
                 </div>
               </Card>
-              <Card className="flex gap-6 items-center p-6">
+              <Card className="flex flex-row gap-6 items-center p-6">
                 <img src="https://via.placeholder.com/96" alt="Consultant" className="w-24 h-24 rounded-full object-cover" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
