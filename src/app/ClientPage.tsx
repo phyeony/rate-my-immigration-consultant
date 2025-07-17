@@ -7,6 +7,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import CityProvinceFilter from "@/components/CityProvinceFilter";
 import { City } from "@/types/City";
 import LanguageFilter from "@/components/LanguageFilter";
+import MultiSelectFilter from "@/components/MultiSelectFilter";
+import MultiSelect from "@/components/MultiSelect";
 
 const LANGUAGES = 
 [
@@ -73,10 +75,21 @@ const SPECIALIZATIONS = [
   "PNP",
 ];
 
+const LICENSE = [
+  "RCIC L1",
+  "RCIC L2",
+  "RCIC L3",
+  "RISIA L4",
+  "RISIA L5",
+  "Lawyer",
+  "Notary (Quebec)",
+]
+
 export default function ClientPage({cities} : {cities: City[]}) {
   // Multi-select state for location and language
   const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
+  const [selectedLicenses, setSelectedLicenses] = useState<string[]>([]);
 
   const toggleChip = (value: string, selected: string[], setSelected: (v: string[]) => void) => {
     setSelected(
@@ -138,6 +151,10 @@ export default function ClientPage({cities} : {cities: City[]}) {
                     ))}
                   </div>
                 </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">License</label>
+                  <MultiSelect options={LICENSE} value={selectedLicenses} onChange={setSelectedLicenses} selectText="Select license..."/>
+                </div>
                 {/* Minimum Rating */}
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Minimum Rating</label>
@@ -173,7 +190,7 @@ export default function ClientPage({cities} : {cities: City[]}) {
                 {/* Languages Multi-select */}
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Languages Spoken</label>
-                  <LanguageFilter languages={LANGUAGES} value={selectedLanguages} onChange={setSelectedLanguages} />
+                  <MultiSelectFilter options={LANGUAGES} value={selectedLanguages} onChange={setSelectedLanguages} notFoundText="No language found." selectText="Select languages..."/>
                 </div>
               </CardContent>
             </Card>
